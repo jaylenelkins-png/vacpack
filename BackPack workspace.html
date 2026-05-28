@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vacpack – Precision Performance Backpack Vacuum</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* ---------- RESET ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+      background-color: #0D0D0D; /* Carbon Black */
+      color: #F5F5F7; /* Soft White */
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------- THEME COLORS ---------- */
+    :root {
+      --carbon-black: #0D0D0D;
+      --graphite-gray: #3A3A3C;
+      --soft-white: #F5F5F7;
+      --magnesium-silver: #C7C9CC;
+      --vacpack-blue: #2A7FFF;
+      --electric-teal: #00D4C2;
+      --deep-slate: #1A1A1C;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    .page {
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, #1A1A1C 0, #0D0D0D 45%, #000 100%);
+      color: var(--soft-white);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    @media (min-width: 900px) {
+      section {
+        padding: 5rem 0;
+      }
+    }
+
+    /* ---------- TYPOGRAPHY ---------- */
+    h1, h2, h3, h4 {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 4vw, 3.4rem);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3vw, 2.4rem);
+      margin-bottom: 0.75rem;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.98rem;
+      color: var(--magnesium-silver);
+    }
+
+    .section-heading {
+      margin-bottom: 0.5rem;
+    }
+
+    .section-underline {
+      width: 64px;
+      height: 3px;
+      background: var(--vacpack-blue);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ---------- NAV ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.96), rgba(13,13,13,0.85), transparent);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-v {
+      width: 26px;
+      height: 26px;
+      position: relative;
+    }
+
+    .logo-v::before,
+    .logo-v::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to top, #111, #444);
+    }
+
+    .logo-v::before {
+      left: 6px;
+      height: 22px;
+      transform: skewX(-10deg);
+    }
+
+    .logo-v::after {
+      right: 6px;
+      height: 26px;
+      transform: skewX(10deg);
+    }
+
+    .logo-v-line {
+      position: absolute;
+      left: 50%;
+      top: 18%;
+      width: 2px;
+      height: 60%;
+      background: var(--electric-teal);
+      transform: translateX(4px) rotate(-10deg);
+      border-radius: 999px;
+      box-shadow: 0 0 8px rgba(0,212,194,0.7);
+    }
+
+    .logo-text {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links a {
+      color: var(--magnesium-silver);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--vacpack-blue);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding-top: 3.5rem;
+      padding-bottom: 4.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        align-items: center;
+      }
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--electric-teal);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      margin-bottom: 1.5rem;
+      max-width: 32rem;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric {
+      min-width: 120px;
+    }
+
+    .metric-value {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--electric-teal);
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--magnesium-silver);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+    }
+
+    .btn-primary {
+      background: var(--vacpack-blue);
+      color: #fff;
+      border-color: var(--vacpack-blue);
+    }
+
+    .btn-primary:hover {
+      background: #1f63d1;
+      border-color: #1f63d1;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--soft-white);
+      border-color: var(--graphite-gray);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--electric-teal);
+      color: var(--electric-teal);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 260px;
+      border-radius: 24px;
+      background: radial-gradient(circle at 20% 0, rgba(0,212,194,0.25), transparent 55%),
+                  radial-gradient(circle at 80% 100%, rgba(42,127,255,0.25), transparent 55%),
+                  #050506;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+
+    .hero-visual-inner {
+      position: absolute;
+      inset: 0;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-tag {
+      align-self: flex-start;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245,245,247,0.12);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--magnesium-silver);
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-unit {
+      align-self: center;
+      width: 70%;
+      max-width: 260px;
+      aspect-ratio: 3/5;
+      border-radius: 999px;
+      border: 1px solid rgba(199,201,204,0.35);
+      background: linear-gradient(145deg, #111, #222 40%, #111 70%, #050505 100%);
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.7),
+        0 18px 40px rgba(0,0,0,0.9);
+      overflow: hidden;
+    }
+
+    .hero-unit::before {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border-radius: 999px;
+      background-image:
+        linear-gradient(135deg, rgba(255,255,255,0.06), transparent 40%),
+        repeating-linear-gradient(
+          135deg,
+          rgba(255,255,255,0.06) 0,
+          rgba(255,255,255,0.06) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      opacity: 0.9;
+      mix-blend-mode: screen;
+    }
+
+    .hero-unit-logo {
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .hero-unit-logo-mark {
+      width: 32px;
+      height: 32px;
+      position: relative;
+    }
+
+    .hero-unit-logo-mark::before,
+    .hero-unit-logo-mark::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to top, #111, #f5f5f7);
+    }
+
+    .hero-unit-logo-mark::before {
+      left: 7px;
+      height: 26px;
+      transform: skewX(-10deg);
+    }
+
+    .hero-unit-logo-mark::after {
+      right: 7px;
+      height: 30px;
+      transform: skewX(10deg);
+    }
+
+    .hero-unit-logo-line {
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      width: 2px;
+      height: 60%;
+      background: var(--electric-teal);
+      transform: translateX(5px) rotate(-10deg);
+      border-radius: 999px;
+      box-shadow: 0 0 10px rgba(0,212,194,0.9);
+    }
+
+    .hero-unit-logo-text {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--soft-white);
+    }
+
+    .hero-unit-band {
+      position: absolute;
+      bottom: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--electric-teal), var(--vacpack-blue));
+      box-shadow: 0 0 12px rgba(0,212,194,0.7);
+    }
+
+    .hero-unit-specs {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--magnesium-silver);
+    }
+
+    .hero-footnote {
+      font-size: 0.75rem;
+      color: var(--magnesium-silver);
+      opacity: 0.8;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    .split {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .split {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        align-items: center;
+      }
+    }
+
+    .card {
+      background: linear-gradient(145deg, #111, #18181b);
+      border-radius: 18px;
+      padding: 1.5rem;
+      border: 1px solid rgba(199,201,204,0.12);
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--magnesium-silver);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 720px) {
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .feature {
+      font-size: 0.9rem;
+    }
+
+    .feature h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature p {
+      font-size: 0.85rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(199,201,204,0.18);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--magnesium-silver);
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--electric-teal);
+      box-shadow: 0 0 6px rgba(0,212,194,0.8);
+    }
+
+    .spec-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 720px) {
+      .spec-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .spec-block h4 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 0.4rem;
+      color: var(--magnesium-silver);
+    }
+
+    .spec-block ul {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--magnesium-silver);
+    }
+
+    .spec-block li {
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight-metric {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--electric-teal);
+    }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      background: radial-gradient(circle at top, #1A1A1C 0, #050505 55%, #000 100%);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(199,201,204,0.18);
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.9);
+    }
+
+    .cta p {
+      max-width: 32rem;
+      margin: 0.75rem auto 1.75rem;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      border-top: 1px solid rgba(199,201,204,0.16);
+      padding: 1.5rem 0 2.5rem;
+      font-size: 0.8rem;
+      color: var(--magnesium-silver);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--magnesium-silver);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAV -->
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <div class="logo-mark">
+            <div class="logo-v">
+              <div class="logo-v-line"></div>
+            </div>
+            <div class="logo-text">VACPACK</div>
+          </div>
+          <div class="nav-links">
+            <a href="#problem">Problem</a>
+            <a href="#solution">Solution</a>
+            <a href="#features">Features</a>
+            <a href="#specs">Specs</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero" id="top">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <div class="hero-kicker">Premium Cordless Commercial Backpack Vacuum</div>
+              <h1>Lightest in Class. Most Powerful. Engineered Quiet.</h1>
+              <p class="hero-subtitle">
+                Vacpack combines a high‑RPM brushless motor, carbon‑fiber shell, and acoustic engineering to deliver
+                20% less weight, class‑leading suction, and significantly lower noise than typical high‑performance backpack vacuums.
+              </p>
+
+              <div class="hero-metrics">
+                <div class="metric">
+                  <div class="metric-value">20%</div>
+                  <div class="metric-label">Lighter than leading models</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-value">High‑RPM</div>
+                  <div class="metric-label">Brushless motor</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-value">Quiet</div>
+                  <div class="metric-label">Acoustic engineered</div>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <button class="btn-primary">Request Pilot Program</button>
+                <button class="btn-secondary">Download Investor Deck</button>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="hero-visual-inner">
+                <div class="hero-tag">Prototype Concept Render</div>
+                <div class="hero-unit">
+                  <div class="hero-unit-logo">
+                    <div class="hero-unit-logo-mark">
+                      <div class="hero-unit-logo-line"></div>
+                    </div>
+                    <div class="hero-unit-logo-text">VACPACK</div>
+                  </div>
+                  <div class="hero-unit-band"></div>
+                  <div class="hero-unit-specs">
+                    <span>20% Lighter</span>
+                    <span>High‑RPM</span>
+                    <span>Quiet</span>
+                  </div>
+                </div>
+                <div class="hero-footnote">
+                  Concept visualization of Vacpack’s premium carbon‑fiber and magnesium construction.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM / OPPORTUNITY -->
+      <section id="problem">
+        <div class="container">
+          <div class="split">
+            <div>
+              <h2 class="section-heading">The Problem</h2>
+              <div class="section-underline"></div>
+              <p>
+                Commercial cleaning teams are forced to choose between heavy backpack vacuums that cause fatigue,
+                underpowered cordless units that require multiple passes, and loud machines that disrupt hotels,
+                schools, and daytime operations.
+              </p>
+              <p style="margin-top:1rem;">
+                The industry has accepted these tradeoffs for decades. Weight, power, and noise have never been solved together in one system.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-title">Operational Pain Points</div>
+              <div class="card-grid">
+                <div class="feature">
+                  <h4>Heavy Equipment</h4>
+                  <p>Backpack vacuums strain operators, increasing fatigue and injury risk across long shifts.</p>
+                </div>
+                <div class="feature">
+                  <h4>Insufficient Power</h4>
+                  <p>Cordless units often lack suction, forcing more time per room and higher labor costs.</p>
+                </div>
+                <div class="feature">
+                  <h4>Excessive Noise</h4>
+                  <p>Loud motors limit use in hotels, schools, airports, and other noise‑sensitive environments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution">
+        <div class="container">
+          <div class="split">
+            <div>
+              <h2 class="section-heading">The Vacpack Solution</h2>
+              <div class="section-underline"></div>
+              <p>
+                Vacpack is a premium cordless commercial backpack vacuum engineered to be 20% lighter than leading models
+                while delivering class‑leading suction and significantly quieter operation.
+              </p>
+              <p style="margin-top:1rem;">
+                High‑RPM motor technology, carbon‑fiber and magnesium construction, and a pro‑grade harness system combine
+                to create a new standard for commercial cleaning performance.
+              </p>
+              <div style="margin-top:1.5rem;">
+                <span class="pill">
+                  <span class="pill-dot"></span>
+                  Precision Performance
+                </span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Core Differentiators</div>
+              <div class="card-grid">
+                <div class="feature">
+                  <h4>20% Lighter</h4>
+                  <p>Carbon‑fiber shell and magnesium motor housing reduce mass without sacrificing durability.</p>
+                </div>
+                <div class="feature">
+                  <h4>High‑RPM Power</h4>
+                  <p>Brushless motor delivers exceptional airflow and static pressure from a compact, efficient package.</p>
+                </div>
+                <div class="feature">
+                  <h4>Engineered Quiet</h4>
+                  <p>Acoustic insulation, airflow optimization, and vibration isolation reduce noise at the source.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section id="features">
+        <div class="container">
+          <h2 class="section-heading">Engineering Features</h2>
+          <div class="section-underline"></div>
+          <div class="card-grid" style="margin-top:1.5rem;">
+            <div class="card">
+              <div class="card-title">High‑RPM Motor</div>
+              <p>
+                Ultra‑high‑speed brushless motor delivers powerful suction with a smaller, lighter assembly.
+                Precision balancing and high‑quality bearings support quiet, efficient operation.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-title">Carbon‑Fiber &amp; Magnesium</div>
+              <p>
+                Carbon‑fiber shell provides lightweight strength, while a magnesium motor housing manages heat
+                and vibration without adding unnecessary weight.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-title">Quiet‑Performance Design</div>
+              <p>
+                Multi‑layer acoustic insulation, tuned airflow paths, and Helmholtz‑style silencers reduce harsh
+                motor tones and turbulence noise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPECS -->
+      <section id="specs">
+        <div class="container">
+          <h2 class="section-heading">Key Specifications</h2>
+          <div class="section-underline"></div>
+          <div class="spec-grid" style="margin-top:1.5rem;">
+            <div class="spec-block">
+              <h4>Performance</h4>
+              <ul>
+                <li><span class="highlight-metric">20% lighter</span> than leading cordless backpack vacuums</li>
+                <li>High‑RPM brushless motor for class‑leading suction</li>
+                <li>Optimized airflow path for maximum efficiency</li>
+              </ul>
+            </div>
+            <div class="spec-block">
+              <h4>Power System</h4>
+              <ul>
+                <li>High‑energy‑density NMC lithium‑ion battery</li>
+                <li>Full‑shift runtime with modular pack design</li>
+                <li>Fast‑charge capability for continuous operation</li>
+              </ul>
+            </div>
+            <div class="spec-block">
+              <h4>Acoustics</h4>
+              <ul>
+                <li>Acoustic foam and structural isolation</li>
+                <li>Engineered exhaust and intake geometry</li>
+                <li>Quiet enough for hotels, schools, and daytime cleaning</li>
+              </ul>
+            </div>
+            <div class="spec-block">
+              <h4>Ergonomics</h4>
+              <ul>
+                <li>Pro‑grade harness inspired by hiking packs</li>
+                <li>Aluminum‑reinforced hip belt and load‑lifters</li>
+                <li>Breathable mesh and EVA foam padding</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA / CONTACT -->
+      <section id="contact">
+        <div class="container">
+          <div class="cta">
+            <h2>Bring Vacpack Into Your Operation</h2>
+            <p>
+              We’re preparing pilot programs with commercial cleaning teams, hotels, schools, and facility managers
+              who want to increase productivity while reducing operator fatigue and noise complaints.
+            </p>
+            <div class="hero-actions" style="justify-content:center;">
+              <button class="btn-primary">Request Pilot Details</button>
+              <button class="btn-secondary">Talk to Product Team</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div>© <span id="year"></span> Vacpack. Precision Performance for Commercial Cleaning.</div>
+          <div class="footer-links">
+            <a href="#top">Back to top</a>
+            <a href="#solution">Solution</a>
+            <a href="#features">Features</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple year injection
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
